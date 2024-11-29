@@ -3,6 +3,7 @@
 
 #include "CharacterBase.h"
 #include "Camera/CameraComponent.h"
+#include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
@@ -17,10 +18,11 @@ ACharacterBase::ACharacterBase()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
-
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	
+
+	HUDWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HUD"));
+	HUDWidget->SetupAttachment(RootComponent);
 }
 
 void ACharacterBase::BeginPlay()
